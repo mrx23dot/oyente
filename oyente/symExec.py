@@ -204,7 +204,7 @@ def change_format():
             line = line.replace(':', '')
             lineParts = line.split(' ')
             try:  # removing initial zeroes
-                lineParts[0] = str(int(lineParts[0]))
+                lineParts[0] = str(hex(int(lineParts[0], 16)))
 
             except:
                 lineParts[0] = lineParts[0]
@@ -286,7 +286,7 @@ def mapping_non_push_instruction(current_line_content, current_ins_address, idx,
                     and instr_name == "SHA3" or name == "SELFDESTRUCT" and instr_name == "SUICIDE":
                 g_src_map.instr_positions[current_ins_address] = g_src_map.positions[idx]
                 idx += 1
-                break;
+                break
             else:
                 raise RuntimeError(F"Source map error, unknown name({name}) or instr_name({instr_name})")
     return idx
@@ -337,7 +337,7 @@ def collect_vertices(tokens):
         elif is_new_line is True and tok_type == NUMBER:  # looking for a line number
             last_ins_address = current_ins_address
             try:
-                current_ins_address = int(tok_string)
+                current_ins_address = int(tok_string, 16)
             except ValueError:
                 log.critical("ERROR when parsing row %d col %d", srow, scol)
                 quit()
