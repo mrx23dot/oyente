@@ -286,7 +286,7 @@ def mapping_non_push_instruction(current_line_content, current_ins_address, idx,
                     and instr_name == "SHA3" or name == "SELFDESTRUCT" and instr_name == "SUICIDE":
                 g_src_map.instr_positions[current_ins_address] = g_src_map.positions[idx]
                 idx += 1
-                break;
+                break
             else:
                 raise RuntimeError(F"Source map error, unknown name({name}) or instr_name({instr_name})")
     return idx
